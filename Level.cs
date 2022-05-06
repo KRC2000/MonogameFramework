@@ -30,15 +30,18 @@ namespace Framework
 
                 Tilesets = new Dictionary<string, Tileset>();
 
-                foreach (var tileset_ref in Map.Tileset_refs)
+                if (Map.Tileset_refs != null)
                 {
-
-                    using (StreamReader reader1 = new StreamReader(Path.Join("Content", tileset_ref.Source_tsx)))
+                    foreach (var tileset_ref in Map.Tileset_refs)
                     {
-                        XmlSerializer serializer1 = new XmlSerializer(typeof(Tileset));
-                        Tileset newts = (Tileset)serializer1.Deserialize(reader1);
-                        newts.this_ref = tileset_ref;
-                        Tilesets.Add(newts.Name, newts);
+
+                        using (StreamReader reader1 = new StreamReader(Path.Join("Content", tileset_ref.Source_tsx)))
+                        {
+                            XmlSerializer serializer1 = new XmlSerializer(typeof(Tileset));
+                            Tileset newts = (Tileset)serializer1.Deserialize(reader1);
+                            newts.this_ref = tileset_ref;
+                            Tilesets.Add(newts.Name, newts);
+                        }
                     }
                 }
             }
@@ -46,27 +49,30 @@ namespace Framework
             // Map data can be only read as a string, so
             // converting long ass string ("..0, 0, 0, 1, 1, 0,\n..") into 2D array that Layer objects will own.
             // Also assigning obstacle layer var
-            foreach (var layer in Map.Layers)
+            if (Map.Layers != null)
             {
-                List<string> rows = new List<string>();
-                rows.AddRange(layer.Data_str.Split("\n"));
-                rows.RemoveAt(0);
-                rows.RemoveAt(rows.Count - 1);
-
-                layer.Data = new uint[layer.Height, layer.Width];
-                for (int i = 0; i < rows.Count; i++)
+                foreach (var layer in Map.Layers)
                 {
-                    List<string> row = new List<string>();
-                    row.AddRange(rows[i].Split(","));
-                    row.RemoveAt(row.Count - 1);
+                    List<string> rows = new List<string>();
+                    rows.AddRange(layer.Data_str.Split("\n"));
+                    rows.RemoveAt(0);
+                    rows.RemoveAt(rows.Count - 1);
 
-                    for (int j = 0; j < row.Count; j++)
+                    layer.Data = new uint[layer.Height, layer.Width];
+                    for (int i = 0; i < rows.Count; i++)
                     {
-                        layer.Data[i, j] = uint.Parse(row[j]);
-                    }
-                }
+                        List<string> row = new List<string>();
+                        row.AddRange(rows[i].Split(","));
+                        row.RemoveAt(row.Count - 1);
 
-                if (layer.Name == "Obstacles") ObstacleTileLayer = layer;
+                        for (int j = 0; j < row.Count; j++)
+                        {
+                            layer.Data[i, j] = uint.Parse(row[j]);
+                        }
+                    }
+
+                    if (layer.Name == "Obstacles") ObstacleTileLayer = layer;
+                }
             }
         }
 
