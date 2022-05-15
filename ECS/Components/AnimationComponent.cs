@@ -11,7 +11,7 @@ namespace Framework.ECS.Components
 	/// Requires:<br></br>
 	/// Framework.ECS.Components.DrawableComponent;<br></br>
 	/// </summary>
-	class AnimationComponent : Base, IUpdatable
+	class AnimationComponent : Base, IUpdateable
 	{	
         public DrawableComponent dc = null;
 		Dictionary<string,Animation> animations = new Dictionary<string, Animation>();
@@ -85,7 +85,7 @@ namespace Framework.ECS.Components
 			}
 		}
 
-        private void VerifyRequiredComponents()
+        protected override void VerifyRequiredComponents()
 		{
 			if (dc == null)
 			{

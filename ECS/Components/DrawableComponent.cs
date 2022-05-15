@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
 namespace Framework.ECS.Components
@@ -13,7 +9,7 @@ namespace Framework.ECS.Components
 	/// </summary>
 	class DrawableComponent : Base
 	{
-		public Texture2D texture;
+		public Texture2D texture = null;
 		public TransformComponent tc = null;
 		public bool UsingSourceRect = false;
 		public Rectangle sourceRect;
@@ -55,5 +51,7 @@ namespace Framework.ECS.Components
 				else _batch.Draw(texture, new Rectangle(0, 0, (int)size.X, (int)size.Y), sourceRect, Color.White);
 			}
 		}
+
+		protected override void VerifyRequiredComponents(){}
 	}
 }

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Framework
 {
-	interface IUpdatable
+	interface IUpdateable
 	{
 		public void Update();
 	}

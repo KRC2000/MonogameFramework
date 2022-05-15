@@ -7,7 +7,7 @@ using Framework.ECS.Components;
 
 namespace Framework.ECS
 {
-	static class Manager
+	static class ECSManager
 	{
 		private static List<string> componentNamespaces = new List<string>(){"Framework.ECS.Components"};
 		private static Dictionary<uint, Entity> entities = new Dictionary<uint, Entity>();

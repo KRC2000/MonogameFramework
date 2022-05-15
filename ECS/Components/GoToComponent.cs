@@ -13,7 +13,7 @@ namespace Framework.ECS.Components
 	/// Framework.ECS.Components.TransformComponent;<br></br>
 	/// Only for limited fps
 	/// </summary>
-	class GoToComponent : Base, IUpdatable
+	class GoToComponent : Base, IUpdateable
 	{
 		public bool isTraveling { get; private set; } = false;
 
@@ -64,6 +64,21 @@ namespace Framework.ECS.Components
 			}
 		}
 
+		// Also destroys the queue
+		public void Stop()
+		{
+			VerifyRequiredComponents();
+			
+			isTraveling = false;
+			Traveled = 0;
+
+			if (isDoingQueue)
+			{
+					isDoingQueue = false;
+					Queue.Clear();
+			}
+		}
+
 		public void Update()
 		{
 			VerifyRequiredComponents();
@@ -95,7 +110,7 @@ namespace Framework.ECS.Components
 			}
 		}
 
-		private void VerifyRequiredComponents()
+		protected override void VerifyRequiredComponents()
 		{
 			if (tc == null)
 			{
