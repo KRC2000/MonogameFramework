@@ -1,6 +1,8 @@
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework;
 
 namespace Framework.Tiled
 {
@@ -126,7 +128,8 @@ namespace Framework.Tiled
 	public class Polygon
 	{
 		[XmlAttribute("points")]
-		public string Points { get; set; }
+		public string Points_str { get; set; }
+		public List<Vector2> Points { get; set; }
 	}
 
 	public class PointFlag

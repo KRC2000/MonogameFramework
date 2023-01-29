@@ -3,7 +3,7 @@ using System;
 using Microsoft.Xna.Framework.Input;
 using MonoGame.Extended.Input;
 
-namespace ProjectAlpha2
+namespace Framework
 {
     public static class InputManager
     {

@@ -1,4 +1,3 @@
-//Booba
 namespace Collisio
 {
     public static class Collision

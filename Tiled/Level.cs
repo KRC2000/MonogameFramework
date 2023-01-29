@@ -74,6 +74,22 @@ namespace Framework
                     if (layer.Name == "Obstacles") ObstacleTileLayer = layer;
                 }
             }
+
+            // Convert string with object point coordinates into Vector2 list
+            foreach (ObjectGroup group in Map.ObjectGroups)
+            {
+                foreach (Framework.Tiled.Object obj in group.Objects)
+                {
+                    obj.Polygon.Points = new List<Vector2>();
+
+                    string[] vec_str = obj.Polygon.Points_str.Split(' ');
+                    foreach (string s in vec_str)
+                    {
+                        string[] xy = s.Split(',');
+                        obj.Polygon.Points.Add(new Vector2(Convert.ToInt32(xy[0]), Convert.ToInt32(xy[1])));
+                    }
+                }
+            }
         }
 
         public void LoadTilesets(ContentManager content)
