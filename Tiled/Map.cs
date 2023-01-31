@@ -106,10 +106,10 @@ namespace Framework.Tiled
 		public string Type { get; set; }
 
 		[XmlAttribute("x")]
-		public int X { get; set; }
+		public float X { get; set; }
 
 		[XmlAttribute("y")]
-		public int Y { get; set; }
+		public float Y { get; set; }
 
 		[XmlAttribute("width")]
 		public int Width { get; set; }
