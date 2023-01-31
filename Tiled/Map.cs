@@ -42,7 +42,6 @@ namespace Framework.Tiled
 		public string Source_tsx { get; set; }
 	}
 
-	[XmlRoot("tileset")]
 	public class Tileset
 	{
 		[XmlAttribute("name")]
