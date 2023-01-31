@@ -86,6 +86,11 @@ namespace Framework
                     foreach (string s in vec_str)
                     {
                         string[] xy = s.Split(',');
+
+                        // if coordinate is not rounded (like 34.2342) - round it
+                        xy[0] = xy[0].Split('.')[0];
+                        xy[1] = xy[1].Split('.')[0];
+
                         obj.Polygon.Points.Add(new Vector2(Convert.ToInt32(xy[0]), Convert.ToInt32(xy[1])));
                     }
                 }
