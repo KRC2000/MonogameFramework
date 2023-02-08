@@ -102,8 +102,8 @@ namespace Framework.Tiled
 		[XmlAttribute("name")]
 		public string Name { get; set; }
 
-		[XmlAttribute("type")]
-		public string Type { get; set; }
+		[XmlAttribute("class")]
+		public string Class { get; set; }
 
 		[XmlAttribute("x")]
 		public float X { get; set; }
