@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.IO;
 using System.Collections.Generic;
 
@@ -87,8 +88,8 @@ namespace Framework
                     {
                         string[] xy = s.Split(',');
 
-                        obj.Polygon.Points.Add(new Vector2((float)Convert.ToDecimal(xy[0]), 
-                                                            (float)Convert.ToDecimal(xy[1])));
+                        obj.Polygon.Points.Add(new Vector2((float)Convert.ToDecimal(xy[0], CultureInfo.InvariantCulture.NumberFormat), 
+                                                            (float)Convert.ToDecimal(xy[1], CultureInfo.InvariantCulture.NumberFormat)));
                     }
                 }
             }
